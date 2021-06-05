@@ -13,7 +13,9 @@
                 id="input-text"
                 placeholder="Ukryta wiadomość"
                 rows="3"
-                v-model="textInput"></textarea>
+                v-model="textInput"
+                @keyup="updateCapacity"></textarea>
+                <div class="text-right text-muted text-small">{{capacity}}</div>
             </div>
             <h2>Krok 2</h2>
             <div class="form-group">
@@ -41,7 +43,7 @@
         <div class="columns">
           <div class="column">
             <div class="p-relative">
-            <img class="img-responsive" :src=imgSrc>
+              <img class="img-responsive" ref="orig" :src=imgSrc>
               <span class="p-absolute label">Oryginalny obraz</span>
             </div>
           </div>
@@ -70,7 +72,8 @@ export default {
       target: '#show',
       imgSrc: '',
       imgEncodedSrc: '',
-      textInput: ''
+      textInput: '',
+      capacity: '0 / 0'
     }
   },
   computed: {
@@ -86,6 +89,7 @@ export default {
       reader.onload = f => {
         this.imgSrc = f.target.result
         this.$emit('toggle-loader')
+        this.$nextTick(() => this.updateCapacity())
       }
       reader.readAsDataURL(file)
     },
@@ -95,6 +99,11 @@ export default {
         this.imgEncodedSrc = steg.encode(this.textInput, this.imgSrc)
         this.$emit('toggle-loader')
       }, 1)
+    },
+    updateCapacity () {
+      const inputLenght = this.textInput.length
+      const inputLimit = steg.getHidingCapacity(this.$refs.orig)
+      this.capacity = `${inputLenght} / ${inputLimit}`
     }
   }
 }
