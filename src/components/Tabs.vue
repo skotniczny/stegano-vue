@@ -28,7 +28,7 @@ export default {
         },
         {
           id: '#show',
-          text: 'Oczytaj wiadomość'
+          text: 'Odczytaj wiadomość'
         }
       ]
     }
