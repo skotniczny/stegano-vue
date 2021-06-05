@@ -29,7 +29,7 @@
                 id="output-text"
                 placeholder="Wyślij obraz żeby odczytać wiadomość!"
                 rows="3"
-                v-model="textInput"></textarea>
+                v-model="textOutput"></textarea>
             </div>
           </div>
         </div>
@@ -48,14 +48,10 @@
 import steg from '../steganography'
 export default {
   name: 'HideMessage',
-  props: {
-    msg: String
-  },
   data () {
     return {
-      target: '#show',
       imgEncodedSrc: '',
-      textInput: ''
+      textOutput: ''
     }
   },
   computed: {
@@ -74,10 +70,10 @@ export default {
       }
       reader.readAsDataURL(file)
     },
-    show: function () {
+    show () {
       this.$emit('toggle-loader')
       setTimeout(() => {
-        this.textInput = steg.decode(this.imgEncodedSrc)
+        this.textOutput = steg.decode(this.imgEncodedSrc)
         this.$refs.output.focus()
         this.$emit('toggle-loader')
       }, 500)

@@ -64,12 +64,8 @@
 import steg from '../steganography'
 export default {
   name: 'HideMessage',
-  props: {
-    msg: String
-  },
   data () {
     return {
-      target: '#show',
       imgSrc: '',
       imgEncodedSrc: '',
       textInput: '',
