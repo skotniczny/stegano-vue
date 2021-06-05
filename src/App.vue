@@ -1,13 +1,17 @@
 <template>
   <div class="container">
-    <div class="columns">
-      <div class="column col-2 col-md-12">
-        <img alt="Vue logo" class="img-responsive" src="./assets/logo.png">
-      </div>
-      <div class="column col-10 col-md=12">
-        <HelloWorld msg="Stegano Vue"/>
-      </div>
-    </div>
+    <header class="navbar">
+      <section class="navbar-section">
+        <a href="#" class="navbar-brand mr-2">Stegano Vue</a>
+      </section>
+      <section class="navbar-center">
+        <img alt="Vue logo" width="40" src="./assets/logo.png">
+      </section>
+      <section class="navbar-section">
+        <a href="https://github.com/skotniczny" class="btn btn-link">GitHub</a>
+      </section>
+    </header>
+    <HelloWorld msg="Stegano Vue"/>
   </div>
 </template>
 
@@ -23,3 +27,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.navbar {
+  margin-bottom: 2rem;
+}
+</style>

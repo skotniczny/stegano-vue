@@ -3,7 +3,6 @@
     <div class="loader" v-if="isLoading">
       <div class="loading-lg loading"></div>
     </div>
-    <h1>{{ msg }}</h1>
     <ul class="tab tab-block">
       <li v-for="tab in tabs" class="tab-item" :class="{active: isActive(tab.id)}" :key="tab.id" @click="handleTabs">
         <a :href="tab.id">{{tab.text}}</a>
@@ -80,7 +79,7 @@ export default {
 }
 
 .loader {
-  top: 0;
+  top: 2rem;
   left: 0;
   position: fixed;
   display: flex;
