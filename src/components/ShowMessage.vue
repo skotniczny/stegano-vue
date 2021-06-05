@@ -1,36 +1,40 @@
 <template>
   <div id="show">
     <div class="columns">
-      <div class="column col-4 bg-secondary">
-        <h2>Krok 1</h2>
-        <div class="form-group">
-          <label class="form-label" for="input-file">Wyślij plik graficzny</label>
-          <input
-            class="form-input"
-            id="input-file"
-            type="file"
-            @change="uploadEncodedImage"
-            accept="image/png">
-        </div>
-        <h2>Krok 2</h2>
-        <div class="form-group">
-          <button
-            class="btn btn-primary btn-block"
-            :disabled="isBtnDisabled"
-            @click="show">
-              Odczytaj wiadomość <i class="icon icon-upload"></i>
-          </button>
-        </div>
-        <h2>Krok 3</h2>
-        <div class="form-group">
-          <label class="form-label" for="output-text">Odczytana wiadomości</label>
-          <textarea
-            ref="output"
-            class="form-input"
-            id="output-text"
-            placeholder="Wyślij obraz żeby odczytać wiadomość!"
-            rows="3"
-            v-model="textInput"></textarea>
+      <div class="column col-4">
+        <div class="panel bg-secondary">
+          <div class="panel-body">
+            <h2>Krok 1</h2>
+            <div class="form-group">
+              <label class="form-label" for="input-file">Wyślij plik graficzny</label>
+              <input
+                class="form-input"
+                id="input-file"
+                type="file"
+                @change="uploadEncodedImage"
+                accept="image/png">
+            </div>
+            <h2>Krok 2</h2>
+            <div class="form-group">
+              <button
+                class="btn btn-primary btn-block"
+                :disabled="isBtnDisabled"
+                @click="show">
+                  Odczytaj wiadomość <i class="icon icon-upload"></i>
+              </button>
+            </div>
+            <h2>Krok 3</h2>
+            <div class="form-group">
+              <label class="form-label" for="output-text">Odczytana wiadomości</label>
+              <textarea
+                ref="output"
+                class="form-input"
+                id="output-text"
+                placeholder="Wyślij obraz żeby odczytać wiadomość!"
+                rows="3"
+                v-model="textInput"></textarea>
+            </div>
+          </div>
         </div>
       </div>
       <div class="column col-8">
@@ -88,5 +92,10 @@ export default {
 <style scoped>
 .label {
   top: 0;
+}
+
+.panel {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 </style>
