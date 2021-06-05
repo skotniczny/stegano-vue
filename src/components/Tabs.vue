@@ -16,10 +16,7 @@
 import HideMessage from './HideMessage.vue'
 import ShowMessage from './ShowMessage.vue'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  },
+  name: 'Tabs',
   data () {
     return {
       isLoading: false,

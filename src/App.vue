@@ -11,19 +11,19 @@
         <a href="https://github.com/skotniczny" class="btn btn-link">GitHub</a>
       </section>
     </header>
-    <HelloWorld msg="Stegano Vue"/>
+    <Tabs />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Tabs from './components/Tabs.vue'
 import 'spectre.css'
 import 'spectre.css/dist/spectre-icons.css'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Tabs
   }
 }
 </script>
