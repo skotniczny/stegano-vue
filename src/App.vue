@@ -8,7 +8,7 @@
         <img alt="Vue logo" width="40" src="./assets/logo.png">
       </section>
       <section class="navbar-section">
-        <a href="https://github.com/skotniczny" class="btn btn-link">GitHub</a>
+        <a href="https://github.com/skotniczny/stegano-vue" class="btn btn-link">GitHub</a>
       </section>
     </header>
     <Tabs />
