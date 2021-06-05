@@ -1,5 +1,5 @@
 <template>
-  <div id="show" class="container">
+  <div id="show">
     <div class="columns">
       <div class="column col-4 bg-secondary">
         <h2>Krok 1</h2>
@@ -14,7 +14,12 @@
         </div>
         <h2>Krok 2</h2>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" @click="show">Odczytaj wiadomość <i class="icon icon-upload"></i></button>
+          <button
+            class="btn btn-primary btn-block"
+            :disabled="isBtnDisabled"
+            @click="show">
+              Odczytaj wiadomość <i class="icon icon-upload"></i>
+          </button>
         </div>
         <h2>Krok 3</h2>
         <div class="form-group">
@@ -29,8 +34,10 @@
         </div>
       </div>
       <div class="column col-8">
-        <h3>Zaszyfrowany obraz</h3>
-        <img class="img-responsive" :src=imgSrc>
+        <div class="p-relative">
+          <img class="img-responsive" :src=imgEncodedSrc>
+          <span class="p-absolute label label-secondary">Zakodowany obraz</span>
+        </div>
       </div>
     </div>
   </div>
@@ -46,24 +53,40 @@ export default {
   data () {
     return {
       target: '#show',
-      imgSrc: '',
       imgEncodedSrc: '',
       textInput: ''
     }
   },
+  computed: {
+    isBtnDisabled () {
+      return this.imgEncodedSrc === ''
+    }
+  },
   methods: {
     uploadEncodedImage (e) {
+      this.$emit('toggle-loader')
       const file = e.target.files[0]
       const reader = new FileReader()
       reader.onload = f => {
-        this.imgSrc = f.target.result
+        this.imgEncodedSrc = f.target.result
+        this.$emit('toggle-loader')
       }
       reader.readAsDataURL(file)
     },
-    show () {
-      this.textInput = steg.decode(this.imgSrc)
-      this.$refs.output.focus()
+    show: function () {
+      this.$emit('toggle-loader')
+      setTimeout(() => {
+        this.textInput = steg.decode(this.imgEncodedSrc)
+        this.$refs.output.focus()
+        this.$emit('toggle-loader')
+      }, 500)
     }
   }
 }
 </script>
+
+<style scoped>
+.label {
+  top: 0;
+}
+</style>

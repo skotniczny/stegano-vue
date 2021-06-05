@@ -1,5 +1,5 @@
 <template>
-  <div id="hide" class="container">
+  <div id="hide">
     <div class="columns">
       <div class="column col-4 bg-secondary">
         <h2>Krok 1</h2>
@@ -8,7 +8,7 @@
           <textarea
             class="form-input"
             id="input-text"
-            placeholder="Zaszyfruj mnie!"
+            placeholder="Ukryta wiadomość"
             rows="3"
             v-model="textInput"></textarea>
         </div>
@@ -24,19 +24,28 @@
         </div>
         <h2>Krok 3</h2>
         <div class="form-group">
-          <button class="btn btn-primary btn-block" @click="hide">Ukryj wiadomość <i class="icon icon-edit"></i></button>
+          <button
+            class="btn btn-primary btn-block"
+            :disabled="isBtnDisabled"
+            @click="hide">
+            Ukryj wiadomość <i class="icon icon-edit"></i>
+          </button>
         </div>
       </div>
       <div class="column col-8">
         <div class="columns">
           <div class="column">
-            <h3>Oryginalny obraz</h3>
+            <div class="p-relative">
             <img class="img-responsive" :src=imgSrc>
+              <span class="p-absolute label">Oryginalny obraz</span>
+            </div>
           </div>
           <div class="divider-vert" data-content="⤰"></div>
           <div class="column">
-            <h3>Zakodowany obraz</h3>
+            <div class="p-relative">
             <img class="img-responsive" :src="imgEncodedSrc">
+              <span class="p-absolute label label-secondary">Zakodowany obraz</span>
+            </div>
           </div>
         </div>
       </div>
@@ -59,22 +68,35 @@ export default {
       textInput: ''
     }
   },
+  computed: {
+    isBtnDisabled () {
+      return this.textInput === '' || this.imgSrc === ''
+    }
+  },
   methods: {
     uploadOriginalImage (e) {
+      this.$emit('toggle-loader')
       const file = e.target.files[0]
       const reader = new FileReader()
       reader.onload = f => {
         this.imgSrc = f.target.result
+        this.$emit('toggle-loader')
       }
       reader.readAsDataURL(file)
     },
     hide () {
-      this.imgEncodedSrc = steg.encode(this.textInput, this.imgSrc)
-    },
-    handleTabs (e) {
-      const target = e.target
-      this.target = target.hash
+      this.$emit('toggle-loader')
+      setTimeout(() => {
+        this.imgEncodedSrc = steg.encode(this.textInput, this.imgSrc)
+        this.$emit('toggle-loader')
+      }, 1)
     }
   }
 }
 </script>
+
+<style scoped>
+.label {
+  top: 0;
+}
+</style>

@@ -1,6 +1,14 @@
 <template>
-  <img alt="Vue logo" class="p-absolute" src="./assets/logo.png">
-  <HelloWorld msg="Stegano Vue"/>
+  <div class="container">
+    <div class="columns">
+      <div class="column col-2 col-md-12">
+        <img alt="Vue logo" class="img-responsive" src="./assets/logo.png">
+      </div>
+      <div class="column col-10 col-md=12">
+        <HelloWorld msg="Stegano Vue"/>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
