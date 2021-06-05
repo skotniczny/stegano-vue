@@ -1,10 +1,12 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" class="p-absolute" src="./assets/logo.png">
+  <HelloWorld msg="Stegano Vue"/>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import 'spectre.css'
+import 'spectre.css/dist/spectre-icons.css'
 
 export default {
   name: 'App',
@@ -13,14 +15,3 @@ export default {
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
