@@ -8,6 +8,7 @@
             <div class="form-group">
               <label class="form-label" for="input-text">Wpisz tekst do ukrycia</label>
               <textarea
+                autofocus
                 class="form-input"
                 id="input-text"
                 placeholder="Ukryta wiadomość"

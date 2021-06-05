@@ -17,14 +17,11 @@
             <h2>Krok 2</h2>
             <div class="form-group">
               <button
-                class="btn btn-primary btn-block"
+                class="btn btn-primary btn-block mb-2"
                 :disabled="isBtnDisabled"
                 @click="show">
                   Odczytaj wiadomość <i class="icon icon-upload"></i>
               </button>
-            </div>
-            <h2>Krok 3</h2>
-            <div class="form-group">
               <label class="form-label" for="output-text">Odczytana wiadomości</label>
               <textarea
                 ref="output"
